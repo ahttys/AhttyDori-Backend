@@ -1,13 +1,13 @@
-package com.attys.ahttyduribackend;
+package com.ahttys.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AhttyDuriBackendApplicationTests {
+class ServerApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
