@@ -1,5 +1,6 @@
-package com.ahttys.server.user;
+package com.ahttys.server.domain.user;
 
+import com.ahttys.server.domain.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,8 +9,8 @@ import javax.persistence.*;
 @Setter
 @Entity
 @ToString
-@NoArgsConstructor
-public class User {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

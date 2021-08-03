@@ -1,5 +1,6 @@
-package com.ahttys.server.user;
+package com.ahttys.server.domain.user;
 
+import com.ahttys.server.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
