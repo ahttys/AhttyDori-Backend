@@ -8,7 +8,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -18,7 +17,6 @@ import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
@@ -50,7 +48,7 @@ class UserRepositoryTest {
         String password = "test1234";
 
         userRepository.save(User.builder().email(email).name(name).password(password).build());
-        Optional<String> optUser = userRepository.findByEmail(email);
+        Optional<User> optUser = userRepository.findByEmail(email);
         assertThat(optUser.isPresent()).isEqualTo(true);
     }
 }
