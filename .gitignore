@@ -39,3 +39,4 @@ out/
 ## DB
 
 /db-data/*
+/Server/testdb.mv.db
