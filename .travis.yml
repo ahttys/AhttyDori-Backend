@@ -26,7 +26,11 @@ script: "./gradlew jibDockerBuild"
 #  - ls -al
 #  - zip -r archive.zip application.jar .ebextensions
 #
-#deploy:
+deploy:
+  provider: script
+  script: bash docker-push.sh
+  on:
+    branch: main
 #  provider: elasticbeanstalk
 #  zip_file: archive.zip # before_deploy에서 이미 archive로 이동한 상태(cd archive)라 현재 위치에서 archive.zip 전송
 #  skip_cleanup: true
