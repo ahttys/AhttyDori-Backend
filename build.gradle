@@ -47,5 +47,13 @@ jib{
     }
     to {
         image='jrhong95/ahttyduri'
+        tags=["test"]
+        auth{
+            username='${DOCKER_USER}'
+            password='${DOCKER_PASSWORD}'
+        }
+    }
+    container{
+        creationTime='USE_CURRENT_TIMESTAMP'
     }
 }
