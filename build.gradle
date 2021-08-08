@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security:2.5.3'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.3'
     implementation 'org.springframework.boot:spring-boot-gradle-plugin:2.5.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     compileOnly 'org.projectlombok:lombok:1.18.20'
     developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.3'
     runtimeOnly 'com.h2database:h2:1.4.200'
@@ -48,10 +49,6 @@ jib{
     to {
         image='jrhong95/ahttyduri'
         tags=["test"]
-        auth{
-            username='${DOCKER_USER}'
-            password='${DOCKER_PASSWORD}'
-        }
     }
     container{
         creationTime='USE_CURRENT_TIMESTAMP'
