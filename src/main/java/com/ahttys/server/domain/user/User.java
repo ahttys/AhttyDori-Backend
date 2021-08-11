@@ -1,10 +1,10 @@
 package com.ahttys.server.domain.user;
 
 import com.ahttys.server.domain.BaseTimeEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 @Getter
 @Setter
@@ -16,20 +16,25 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
+
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
+
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = false)
-    private int level;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
 
     @Builder
     public User(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.level = 1;
+        this.userRole = UserRole.ROLE_USER;
     }
 }

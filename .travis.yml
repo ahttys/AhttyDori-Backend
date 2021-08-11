@@ -46,7 +46,7 @@ deploy:
 #    branch: main
 #
 after_deploy:
-  - echo "Elastic Beanstalk 배포 진행중입니다."
+  - echo "Pushed to DockerHub!"
 
 notifications:
   slack: 2021tourapi:2grzt30lYvQYm1FWMtgMAoxu
