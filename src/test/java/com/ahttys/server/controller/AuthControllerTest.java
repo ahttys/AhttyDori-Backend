@@ -110,7 +110,7 @@ class AuthControllerTest {
         mockMvc.perform(get("/api/auth/duplicate")
                         .param("email", duplicatedEmail))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{'message': '존재하는 이메일 입니다.'}"))
+                .andExpect(content().json("{'message': '사용중인 이메일 입니다.'}"))
                 .andDo(print());
     }
 
@@ -135,7 +135,7 @@ class AuthControllerTest {
         MvcResult result = mockMvc.perform(get("/api/auth/duplicate")
                         .param("name", duplicatedName))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{'message': '사용 불가능한 닉네임 입니다.'}"))
+                .andExpect(content().json("{'message': '사용중인 닉네임 입니다.'}"))
                 .andDo(print())
                 .andReturn();
     }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
     @GetMapping("/")
     public ResponseEntity<Message> startApp() {
-        return new ResponseEntity<Message>(new Message("서버 시작"), HttpStatus.OK);
+        return new ResponseEntity<>(new Message("서버 시작"), HttpStatus.OK);
     }
 
     @GetMapping("/test")

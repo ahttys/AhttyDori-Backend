@@ -6,6 +6,9 @@ import com.ahttys.server.domain.user.User;
 import com.ahttys.server.dto.auth.AuthDto;
 import com.ahttys.server.dto.message.Message;
 import com.ahttys.server.repository.UserRepository;
+import com.ahttys.server.util.error.ErrorCode;
+import com.ahttys.server.util.error.exceptions.CustomException;
+import com.ahttys.server.util.error.exceptions.DuplicationException;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -32,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     public AuthDto.UserResponse createUser(AuthDto.CreateUser userDto) {
         if (userRepository.existsByEmail(userDto.getEmail())) {
-            throw new RuntimeException("이미 가입되어 있는 유저입니다.");
+            throw new CustomException("이미 가입되어 있는 유저입니다.", 400);
         }
 
         User newUser = userRepository.save(userDto.toEntity(passwordEncoder));
@@ -62,7 +65,7 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     public Message isValidEmail(String email) {
         if (userRepository.findByEmail(email).isPresent()) {
-            throw new RuntimeException("존재하는 이메일 입니다.");
+            throw new DuplicationException("존재하는 이메일 입니다.", ErrorCode.EMAIL_DUPLICATION);
         }
         return new Message("사용 가능한 이메일 입니다.");
     }
@@ -71,7 +74,7 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     public Message isValidName(String name) {
         if (userRepository.findByName(name).isPresent()) {
-            throw new RuntimeException("존재하는 닉네임 입니다.");
+            throw new DuplicationException("존재하는 닉네임 입니다.", ErrorCode.NICKNAME_DUPLICATION);
         }
         return new Message("사용 가능한 닉네임 입니다.");
     }

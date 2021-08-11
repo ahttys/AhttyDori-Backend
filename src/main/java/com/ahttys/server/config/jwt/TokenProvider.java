@@ -28,7 +28,6 @@ public class TokenProvider {
 
     private final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
     private static final String AUTHORITIES_KEY = "auth";
-    private static final String BEARER_TYPE = "bearer";
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000L * 60 * time;
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
 
@@ -74,7 +73,6 @@ public class TokenProvider {
     }
 
     public boolean validateToken(String token) {
-        logger.info("hellohello");
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;

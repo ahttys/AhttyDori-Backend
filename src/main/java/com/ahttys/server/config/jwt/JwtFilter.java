@@ -28,6 +28,7 @@ public class JwtFilter extends GenericFilterBean {
         String jwt = resolveToken(httpServletRequest);
         String requestURI = httpServletRequest.getRequestURI();
         logger.info("jwt: " + jwt);
+
         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
             Authentication authentication = tokenProvider.getAuthentication(jwt);
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -41,7 +42,7 @@ public class JwtFilter extends GenericFilterBean {
 
     private String resolveToken(HttpServletRequest httpServletRequest) {
         String bearerToken = httpServletRequest.getHeader(AUTHORIZATION_HEADER);
-        logger.info(bearerToken);
+
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }
