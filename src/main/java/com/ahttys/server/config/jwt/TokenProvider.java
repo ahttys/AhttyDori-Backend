@@ -3,6 +3,7 @@ package com.ahttys.server.config.jwt;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,10 +21,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Component
 public class TokenProvider {
-    @Value("${token-validity-in-minutes}")
-    private static long time;
+    private static final long time = 120;
 
     private final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
     private static final String AUTHORITIES_KEY = "auth";
@@ -34,6 +35,7 @@ public class TokenProvider {
     private final Key key;
 
     public TokenProvider(@Value("${jwt.secret}") String secretKey) {
+        logger.info(secretKey);
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
@@ -72,6 +74,7 @@ public class TokenProvider {
     }
 
     public boolean validateToken(String token) {
+        logger.info("hellohello");
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;

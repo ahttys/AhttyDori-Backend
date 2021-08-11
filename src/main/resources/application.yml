@@ -21,11 +21,12 @@ spring:
 
 jwt:
   header: Authorization
-  secret: YWh0dHlhaHR0eWFodHR5YWh0dHlhaHR0eWFodHR5YWh0dHlhaHR0eQo=
+  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
   token-validity-in-minutes: 120
 
 logging:
   level:
+    root: info
     org.springframework.web: debug
     sql: error
     jdbc: off

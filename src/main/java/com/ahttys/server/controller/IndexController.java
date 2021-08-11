@@ -14,4 +14,9 @@ public class IndexController {
     public ResponseEntity<Message> startApp() {
         return new ResponseEntity<Message>(new Message("서버 시작"), HttpStatus.OK);
     }
+
+    @GetMapping("/test")
+    public ResponseEntity<Message> test() {
+        return new ResponseEntity<>(new Message("인증 완료"), HttpStatus.OK);
+    }
 }
