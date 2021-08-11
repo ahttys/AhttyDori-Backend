@@ -1,6 +1,6 @@
 package com.ahttys.server.service.user;
 
-import com.ahttys.server.domain.user.UserRepository;
+import com.ahttys.server.repository.UserRepository;
 import com.ahttys.server.dto.auth.Auth;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @AllArgsConstructor
 @Service
-public class AuthServiceImpl implements AuthService {
+public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override

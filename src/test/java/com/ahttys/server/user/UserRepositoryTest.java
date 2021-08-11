@@ -3,7 +3,7 @@ package com.ahttys.server.user;
 import static org.assertj.core.api.Assertions.*;
 
 import com.ahttys.server.domain.user.User;
-import com.ahttys.server.domain.user.UserRepository;
+import com.ahttys.server.repository.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

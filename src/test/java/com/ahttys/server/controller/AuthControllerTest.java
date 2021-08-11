@@ -1,6 +1,6 @@
 package com.ahttys.server.controller;
 
-import com.ahttys.server.domain.user.UserRepository;
+import com.ahttys.server.repository.UserRepository;
 import com.ahttys.server.dto.auth.Auth;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
@@ -40,11 +40,13 @@ class AuthControllerTest {
 
     @BeforeEach
     public void setup() {
+        // 한글 깨짐 수정하기 위한 빌더 추가
         this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx)
-                .addFilters(new CharacterEncodingFilter("UTF-8", true))  // 필터 추가
+                .addFilters(new CharacterEncodingFilter("UTF-8", true))
                 .alwaysDo(print())
                 .build();
 
+        // 중복검사를 위한 새로운 유저 생성
         String email = "test@test.com";
         String name = "sehwaHong";
         String password = "12341234";
