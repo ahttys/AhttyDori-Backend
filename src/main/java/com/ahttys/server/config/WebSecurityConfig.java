@@ -64,6 +64,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/api").permitAll()
                 .antMatchers("/api/auth/**").permitAll()
+
+                // Swagger
+                .antMatchers("/swagger*/**").permitAll()
+                .antMatchers("/v3/**").permitAll()
+                .antMatchers("/configuration/**").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+
                 .anyRequest().authenticated()
 
                 // Add JWT filter
