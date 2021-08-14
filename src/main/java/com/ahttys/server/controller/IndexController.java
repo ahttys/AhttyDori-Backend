@@ -1,6 +1,7 @@
 package com.ahttys.server.controller;
 
-import com.ahttys.server.dto.message.Message;
+import com.ahttys.server.dto.MessageDto;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class IndexController {
     @GetMapping("/")
-    public ResponseEntity<Message> startApp() {
-        return new ResponseEntity<>(new Message("서버 시작"), HttpStatus.OK);
+    @ApiOperation(value = "start server", notes = "swagger check")
+    public ResponseEntity<MessageDto> startApp() {
+        return new ResponseEntity<>(new MessageDto("서버 시작"), HttpStatus.OK);
     }
 
     @GetMapping("/test")
-    public ResponseEntity<Message> test() {
-        return new ResponseEntity<>(new Message("인증 완료"), HttpStatus.OK);
+    public ResponseEntity<MessageDto> test() {
+        return new ResponseEntity<>(new MessageDto("인증 완료"), HttpStatus.OK);
     }
 }

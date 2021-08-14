@@ -1,4 +1,4 @@
-package com.ahttys.server.dto.auth;
+package com.ahttys.server.dto;
 
 import com.ahttys.server.domain.user.User;
 import lombok.AllArgsConstructor;

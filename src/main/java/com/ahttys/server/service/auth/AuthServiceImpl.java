@@ -3,17 +3,14 @@ package com.ahttys.server.service.auth;
 import com.ahttys.server.config.jwt.JwtFilter;
 import com.ahttys.server.config.jwt.TokenProvider;
 import com.ahttys.server.domain.user.User;
-import com.ahttys.server.dto.auth.AuthDto;
-import com.ahttys.server.dto.message.Message;
+import com.ahttys.server.dto.AuthDto;
+import com.ahttys.server.dto.MessageDto;
 import com.ahttys.server.repository.UserRepository;
 import com.ahttys.server.util.error.ErrorCode;
 import com.ahttys.server.util.error.exceptions.CustomException;
 import com.ahttys.server.util.error.exceptions.DuplicationException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -63,19 +60,19 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional
-    public Message isValidEmail(String email) {
+    public MessageDto isValidEmail(String email) {
         if (userRepository.findByEmail(email).isPresent()) {
             throw new DuplicationException("존재하는 이메일 입니다.", ErrorCode.EMAIL_DUPLICATION);
         }
-        return new Message("사용 가능한 이메일 입니다.");
+        return new MessageDto("사용 가능한 이메일 입니다.");
     }
 
     @Override
     @Transactional
-    public Message isValidName(String name) {
+    public MessageDto isValidName(String name) {
         if (userRepository.findByName(name).isPresent()) {
             throw new DuplicationException("존재하는 닉네임 입니다.", ErrorCode.NICKNAME_DUPLICATION);
         }
-        return new Message("사용 가능한 닉네임 입니다.");
+        return new MessageDto("사용 가능한 닉네임 입니다.");
     }
 }
