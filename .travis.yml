@@ -26,12 +26,12 @@ deploy:
   region: "ap-northeast-2"
   app: "ahttys-server"
   env: "Ahttysserver-env"
-  bucket_name: "elasticbeanstalk-ap-northeast-2-782016145255"  # S3 bucket name
+  bucket: "elasticbeanstalk-ap-northeast-2-782016145255"  # S3 bucket name
   bucket_path: "Server"
-  on:
-    branch: main
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
+  on:
+    branch: main
 
 after_deploy:
   - echo "deploy success"
