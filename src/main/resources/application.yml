@@ -1,4 +1,10 @@
+server:
+  port: 8080
+
 spring:
+  config:
+    activate:
+      on-profile: local
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:file:./db-data/testdb;MODE=MySQL
@@ -17,7 +23,42 @@ spring:
   h2:
     console:
       enabled: true
-      path: /h2-console
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_PATH}/Project?serverTimezone=Asia/Seoul
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/Project?serverTimezone=Asia/Seoul
+    username: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+---
 
 jwt:
   header: Authorization
@@ -31,4 +72,3 @@ logging:
     sql: error
     jdbc: off
     jdbc.sqlonly: debug
-

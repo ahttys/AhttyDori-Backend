@@ -36,3 +36,8 @@ out/
 ### VS Code ###
 .vscode/
 /db-data/testdb.*
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
