@@ -10,3 +10,12 @@ services:
       DB_PASSWORD: "${DB_PASSWORD}"
     ports:
       - "8080:8080"
+
+  nginx:
+    restart: always
+    build: ./nginx
+    container_name: "ahttyduri-proxy"
+    depends_on:
+      - backend
+    ports:
+      - "80:80"

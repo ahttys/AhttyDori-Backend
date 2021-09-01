@@ -17,7 +17,7 @@ import javax.validation.constraints.Email;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/auth")
+@RequestMapping("auth")
 public class AuthController {
     private AuthService authService;
 
