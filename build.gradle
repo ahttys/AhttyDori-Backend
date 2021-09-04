@@ -54,7 +54,6 @@ jib{
     }
     to {
         image='jrhong95/ahttyduri'
-        tags=["test"]
     }
     container {
         creationTime='USE_CURRENT_TIMESTAMP'
