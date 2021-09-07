@@ -10,8 +10,6 @@ services:
       DB_PASSWORD: "${DB_PASSWORD}"
     ports:
       - "8080:8080"
-    depends_on:
-      - ahttyduri-mongo
 
   ahttyduri-proxy:
     restart: always
@@ -21,11 +19,3 @@ services:
       - ahttyduri-server
     ports:
       - "80:80"
-
-  ahttyduri-mongo:
-    image: "mongo"
-    container_name: "ahttyduri-mongo"
-    volumes:
-      - ./db-data/mongo/db:/data/db
-    ports:
-      - "27017:27017"
