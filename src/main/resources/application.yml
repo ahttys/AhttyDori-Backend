@@ -5,12 +5,14 @@ spring:
   config:
     activate:
       on-profile: local
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/Project
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:file:./db-data/testdb;MODE=MySQL
     username: sa
     password: ahtty
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,7 +21,6 @@ spring:
       hibernate:
         format-sql: true
         show-sql: true
-
   h2:
     console:
       enabled: true
