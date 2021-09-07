@@ -1,10 +1,7 @@
 package com.ahttys.server.dto;
 
 import com.ahttys.server.domain.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.NotNull;
@@ -14,6 +11,7 @@ public class AuthDto {
     @Getter
     @Setter
     @Builder
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class CreateUser {
         @NotNull
@@ -34,6 +32,7 @@ public class AuthDto {
     @Getter
     @Setter
     @Builder
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class UserResponse{
         @NotNull
@@ -45,6 +44,7 @@ public class AuthDto {
     @Getter
     @Setter
     @Builder
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class Login {
         @NotNull

@@ -33,7 +33,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.3'
     testImplementation 'org.springframework.security:spring-security-test:5.5.1'
-    testImplementation group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.0.0'
 
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
