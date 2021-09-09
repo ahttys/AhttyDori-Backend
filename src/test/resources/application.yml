@@ -4,7 +4,6 @@ spring:
     url: jdbc:h2:file:./db-data/testdb;MODE=MySQL
     username: sa
     password: ahtty
-
   jpa:
     hibernate:
       ddl-auto: create
@@ -13,7 +12,7 @@ spring:
       hibernate:
         format-sql: true
         show-sql: true
-
+  data:
   h2:
     console:
       enabled: true
