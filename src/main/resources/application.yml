@@ -45,7 +45,7 @@ spring:
       ddl-auto: none
   data:
     mongodb:
-      host: "localhost"
+      host: "127.0.0.1"
       port: ${MONGO_PORT}
       database: ${MONGO_DB}
       username: ${MONGO_USER}
