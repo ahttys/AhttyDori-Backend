@@ -1,3 +1,5 @@
+# @format
+
 server:
   port: 8080
 
@@ -30,7 +32,6 @@ spring:
       password: ${MONGO_PASSWORD}
       authentication-database: ${MONGO_DB}
 ---
-
 spring:
   config:
     activate:
@@ -45,14 +46,13 @@ spring:
       ddl-auto: none
   data:
     mongodb:
-      host: "127.0.0.1"
+      host: ${MONGO_HOST}
       port: ${MONGO_PORT}
       database: ${MONGO_DB}
       username: ${MONGO_USER}
       password: ${MONGO_PASSWORD}
       authentication-database: ${MONGO_DB}
 ---
-
 spring:
   config:
     activate:
@@ -69,10 +69,9 @@ spring:
         format_sql: true
     show-sql: true
 ---
-
 jwt:
   header: Authorization
-  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+  secret: ${JWT_KEY}
   token-validity-in-minutes: 120
 
 logging:
