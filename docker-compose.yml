@@ -1,25 +1,29 @@
-version: "3"
+# @format
+
+version: '3'
 services:
   ahttyduri-server:
-    image: "jrhong95/ahttyduri"
-    container_name: "ahttyduri-server"
+    image: 'jrhong95/ahttyduri'
+    container_name: 'ahttyduri-server'
     environment:
-      SPRING_PROFILES_ACTIVE: "${SPRING_PROFILES_ACTIVE}"
-      DB_PATH: "${DB_PATH}"
-      DB_USER: "${DB_USER}"
-      DB_PASSWORD: "${DB_PASSWORD}"
-      MONGO_PORT: "${MONGO_PORT}"
-      MONGO_DB: "${MONGO_DB}"
-      MONGO_USER: "${MONGO_USER}"
-      MONGO_PASSWORD: "${MONGO_PASSWORD}"
+      SPRING_PROFILES_ACTIVE: '${SPRING_PROFILES_ACTIVE}'
+      DB_PATH: '${DB_PATH}'
+      DB_USER: '${DB_USER}'
+      DB_PASSWORD: '${DB_PASSWORD}'
+      MONGO_HOST: '${MONGO_HOST}'
+      MONGO_PORT: '${MONGO_PORT}'
+      MONGO_DB: '${MONGO_DB}'
+      MONGO_USER: '${MONGO_USER}'
+      MONGO_PASSWORD: '${MONGO_PASSWORD}'
+      JWT_KEY: '${JWT_KEY}'
     ports:
-      - "8080:8080"
+      - '8080:8080'
 
   ahttyduri-proxy:
     restart: always
     build: ./nginx
-    container_name: "ahttyduri-proxy"
+    container_name: 'ahttyduri-proxy'
     depends_on:
       - ahttyduri-server
     ports:
-      - "80:80"
+      - '80:80'
