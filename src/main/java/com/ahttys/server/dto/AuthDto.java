@@ -1,6 +1,6 @@
 package com.ahttys.server.dto;
 
-import com.ahttys.server.domain.user.Member;
+import com.ahttys.server.domain.Member.Member;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

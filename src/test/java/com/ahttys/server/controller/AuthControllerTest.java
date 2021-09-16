@@ -1,6 +1,6 @@
 package com.ahttys.server.controller;
 
-import com.ahttys.server.repository.UserRepository;
+import com.ahttys.server.repository.MemberRepository;
 import com.ahttys.server.dto.AuthDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
@@ -31,7 +31,7 @@ class AuthControllerTest {
     MockMvc mockMvc;
 
     @Autowired
-    UserRepository userRepository;
+    MemberRepository memberRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -61,12 +61,12 @@ class AuthControllerTest {
                 .password(password)
                 .build();
 
-        userRepository.save(user.toEntity(passwordEncoder));
+        memberRepository.save(user.toEntity(passwordEncoder));
     }
 
     @AfterEach
     public void clean() {
-        userRepository.deleteAll();
+        memberRepository.deleteAll();
     }
 
     @Test

@@ -1,6 +1,6 @@
 package com.ahttys.server.config.jwt;
 
-import com.ahttys.server.domain.user.Member;
+import com.ahttys.server.domain.Member.Member;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -10,18 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -30,7 +24,7 @@ public class TokenProvider {
 
     private final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000L * 60 * time;
-    private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
+//    private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
 
     private final Key key;
     private final UserDetailsService userDetailsService;

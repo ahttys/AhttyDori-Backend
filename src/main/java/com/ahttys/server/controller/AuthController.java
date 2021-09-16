@@ -30,11 +30,11 @@ public class AuthController {
         return ResponseEntity.ok(authService.authentication(loginDto));
     }
 
-    @PostMapping("/join")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "회원가입 성공", content = @Content(schema = @Schema(implementation = AuthDto.UserResponse.class))),
             @ApiResponse(responseCode = "400", description = "실패", content = @Content(schema = @Schema(implementation = MessageDto.class)))
     })
+    @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody AuthDto.CreateUser userDto) {
         if (userDto.getEmail().isEmpty() || userDto.getPassword().isEmpty() || userDto.getName().isEmpty()) {
             return new ResponseEntity<>(new MessageDto("회원가입에 실패하였습니다."), HttpStatus.BAD_REQUEST);
@@ -43,11 +43,11 @@ public class AuthController {
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/duplicate")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "사용가능한 데이터", content = @Content(schema = @Schema(implementation = MessageDto.class))),
             @ApiResponse(responseCode = "400", description = "실패", content = @Content(schema = @Schema(implementation = MessageDto.class)))
     })
+    @GetMapping("/duplicate")
     public ResponseEntity<?> checkDuplicate(@Email @RequestParam(value = "email", defaultValue = "") String email,
                                                      @RequestParam(value = "name", defaultValue = "") String name) {
         if (!email.isEmpty()) {
@@ -58,11 +58,15 @@ public class AuthController {
         return new ResponseEntity<>(new MessageDto("값을 입력해야 합니다."), HttpStatus.BAD_REQUEST);
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "카카오 로그인 성공", content = @Content(schema = @Schema(implementation = AuthDto.UserResponse.class))),
+            @ApiResponse(responseCode = "400", description = "실패", content = @Content(schema = @Schema(implementation = MessageDto.class)))
+    })
     @GetMapping("/kakao")
     public ResponseEntity<?> loginWithKakaoOauth(@RequestParam(value = "code") String code) {
         if (code.isEmpty()) {
             return new ResponseEntity<>(new MessageDto("Code가 없습니다."), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

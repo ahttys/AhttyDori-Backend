@@ -1,4 +1,4 @@
-package com.ahttys.server.domain.user;
+package com.ahttys.server.domain.Member;
 
 import com.ahttys.server.domain.BaseTimeEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,7 +27,7 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private MemberRole memberRole;
 
     @Column(nullable = false)
     private boolean kakaoOAuth = false;
@@ -40,6 +40,6 @@ public class Member extends BaseTimeEntity {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.userRole = UserRole.ROLE_USER;
+        this.memberRole = MemberRole.ROLE_USER;
     }
 }
