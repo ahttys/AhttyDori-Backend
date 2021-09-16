@@ -26,7 +26,7 @@ public class AuthController {
             @ApiResponse(responseCode = "200", description = "로그인 성공", content = @Content(schema = @Schema(implementation = AuthDto.Token.class))),
             @ApiResponse(responseCode = "400", description = "실패", content = @Content(schema = @Schema(implementation = MessageDto.class)))
     })
-    public ResponseEntity<AuthDto.Token> login(@Valid @RequestBody AuthDto.Login loginDto) {
+    public ResponseEntity<AuthDto.Token> login(@RequestBody AuthDto.Login loginDto) {
         return ResponseEntity.ok(authService.authentication(loginDto));
     }
 
@@ -36,6 +36,9 @@ public class AuthController {
             @ApiResponse(responseCode = "400", description = "실패", content = @Content(schema = @Schema(implementation = MessageDto.class)))
     })
     public ResponseEntity<?> join(@RequestBody AuthDto.CreateUser userDto) {
+        if (userDto.getEmail().isEmpty() || userDto.getPassword().isEmpty() || userDto.getName().isEmpty()) {
+            return new ResponseEntity<>(new MessageDto("회원가입에 실패하였습니다."), HttpStatus.BAD_REQUEST);
+        }
         AuthDto.UserResponse userResponse = authService.createUser(userDto);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
@@ -45,13 +48,21 @@ public class AuthController {
             @ApiResponse(responseCode = "200", description = "사용가능한 데이터", content = @Content(schema = @Schema(implementation = MessageDto.class))),
             @ApiResponse(responseCode = "400", description = "실패", content = @Content(schema = @Schema(implementation = MessageDto.class)))
     })
-    public ResponseEntity<MessageDto> checkDuplicate(@Email @RequestParam(value = "email", defaultValue = "") String email,
+    public ResponseEntity<?> checkDuplicate(@Email @RequestParam(value = "email", defaultValue = "") String email,
                                                      @RequestParam(value = "name", defaultValue = "") String name) {
         if (!email.isEmpty()) {
-            return new ResponseEntity<MessageDto>(authService.isValidEmail(email), HttpStatus.OK);
+            return new ResponseEntity<>(authService.isValidEmail(email), HttpStatus.OK);
         } else if (!name.isEmpty()) {
-            return new ResponseEntity<MessageDto>(authService.isValidName(name), HttpStatus.OK);
+            return new ResponseEntity<>(authService.isValidName(name), HttpStatus.OK);
         }
-        return new ResponseEntity<MessageDto>(new MessageDto("값을 입력해야 합니다."), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new MessageDto("값을 입력해야 합니다."), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/kakao")
+    public ResponseEntity<?> loginWithKakaoOauth(@RequestParam(value = "code") String code) {
+        if (code.isEmpty()) {
+            return new ResponseEntity<>(new MessageDto("Code가 없습니다."), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

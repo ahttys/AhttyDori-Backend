@@ -2,7 +2,7 @@ package com.ahttys.server.service.auth;
 
 import com.ahttys.server.config.jwt.JwtFilter;
 import com.ahttys.server.config.jwt.TokenProvider;
-import com.ahttys.server.domain.user.User;
+import com.ahttys.server.domain.user.Member;
 import com.ahttys.server.dto.AuthDto;
 import com.ahttys.server.dto.MessageDto;
 import com.ahttys.server.repository.UserRepository;
@@ -10,22 +10,23 @@ import com.ahttys.server.util.error.ErrorCode;
 import com.ahttys.server.util.error.exceptions.CustomException;
 import com.ahttys.server.util.error.exceptions.DuplicationException;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final TokenProvider tokenProvider;
-    private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final PasswordEncoder passwordEncoder;
+    private static final Logger logger = LoggerFactory.getLogger(AuthServiceImpl.class);
 
 
     @Override
@@ -35,27 +36,22 @@ public class AuthServiceImpl implements AuthService {
             throw new CustomException("이미 가입되어 있는 유저입니다.", 400);
         }
 
-        User newUser = userRepository.save(userDto.toEntity(passwordEncoder));
+        Member newMember = userRepository.save(userDto.toEntity(passwordEncoder));
         return AuthDto.UserResponse.builder()
-                .email(newUser.getEmail())
-                .name(newUser.getName())
+                .email(newMember.getEmail())
+                .name(newMember.getName())
                 .build();
     }
 
     @Override
     public AuthDto.Token authentication(AuthDto.Login loginDto) {
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
-
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        String jwt = tokenProvider.createToken(authentication);
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-
-        return new AuthDto.Token(jwt);
+        Optional<Member> user = userRepository.findByEmail(loginDto.getEmail());
+        if (user.isPresent() && passwordEncoder.matches(loginDto.getPassword(), user.get().getPassword())) {
+            String jwt = tokenProvider.createToken(user.get());
+            return new AuthDto.Token(jwt);
+        } else {
+            throw new CustomException("로그인에 실패하였습니다.", 400);
+        }
     }
 
     @Override

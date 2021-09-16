@@ -16,5 +16,5 @@ public class SpotDto {
     private String business_content;
     private String keywords;
     private Boolean business_location_yn;
-    private String adress;
+    private String address;
 }

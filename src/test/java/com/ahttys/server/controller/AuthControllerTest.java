@@ -82,7 +82,7 @@ class AuthControllerTest {
                                                 .password(password)
                                                 .build();
 
-        mockMvc.perform(post("/api/auth/join")
+        mockMvc.perform(post("/auth/join")
                         .content(objectMapper.writeValueAsString(user))
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -95,7 +95,7 @@ class AuthControllerTest {
     void checkEmailDuplicateShouldReturn200ByNotDuplicatedEmail() throws Exception {
         String email = "testNoDup@test.com";
 
-        mockMvc.perform(get("/api/auth/duplicate")
+        mockMvc.perform(get("/auth/duplicate")
                 .param("email", email))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'message': '사용 가능한 이메일 입니다.'}"))
@@ -107,7 +107,7 @@ class AuthControllerTest {
     void checkEmailDuplicateShouldReturn400ByDuplicatedEmail() throws Exception {
         String duplicatedEmail = "test@test.com";
 
-        mockMvc.perform(get("/api/auth/duplicate")
+        mockMvc.perform(get("/auth/duplicate")
                         .param("email", duplicatedEmail))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("{'message': '사용중인 이메일 입니다.'}"))
@@ -119,7 +119,7 @@ class AuthControllerTest {
     void checkNicknameDuplicateShouldReturn200ByNotDuplicatedName() throws Exception {
         String name = "test";
 
-        MvcResult result = mockMvc.perform(get("/api/auth/duplicate")
+        MvcResult result = mockMvc.perform(get("/auth/duplicate")
                         .param("name", name))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'message': '사용 가능한 닉네임 입니다.'}"))
@@ -132,7 +132,7 @@ class AuthControllerTest {
     void checkNicknameDuplicateShouldReturn400ByDuplicatedName() throws Exception {
         String duplicatedName = "sehwaHong";
 
-        MvcResult result = mockMvc.perform(get("/api/auth/duplicate")
+        MvcResult result = mockMvc.perform(get("/auth/duplicate")
                         .param("name", duplicatedName))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("{'message': '사용중인 닉네임 입니다.'}"))

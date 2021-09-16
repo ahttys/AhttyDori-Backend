@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends BaseTimeEntity {
+public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,7 +19,6 @@ public class User extends BaseTimeEntity {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
     @JsonIgnore
     private String password;
 
@@ -30,8 +29,14 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
+    @Column(nullable = false)
+    private boolean kakaoOAuth = false;
+
+    @Column(nullable = false)
+    private boolean appleOAuth = false;
+
     @Builder
-    public User(String email, String password, String name) {
+    public Member(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;

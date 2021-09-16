@@ -2,7 +2,7 @@ package com.ahttys.server.user;
 
 import static org.assertj.core.api.Assertions.*;
 
-import com.ahttys.server.domain.user.User;
+import com.ahttys.server.domain.user.Member;
 import com.ahttys.server.repository.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-class UserRepositoryTest {
+class MemberRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
@@ -32,13 +32,13 @@ class UserRepositoryTest {
         String name = "test name";
         String password = "test1234";
 
-        userRepository.save(User.builder().email(email).name(name).password(password).build());
-        List<User> users = userRepository.findAll();
+        userRepository.save(Member.builder().email(email).name(name).password(password).build());
+        List<Member> members = userRepository.findAll();
 
-        User user = users.get(0);
-        assertThat(user.getEmail()).isEqualTo(email);
-        assertThat(user.getName()).isEqualTo(name);
-        assertThat(user.getPassword()).isEqualTo(password);
+        Member member = members.get(0);
+        assertThat(member.getEmail()).isEqualTo(email);
+        assertThat(member.getName()).isEqualTo(name);
+        assertThat(member.getPassword()).isEqualTo(password);
     }
 
     @Test
@@ -47,8 +47,8 @@ class UserRepositoryTest {
         String name = "test name";
         String password = "test1234";
 
-        userRepository.save(User.builder().email(email).name(name).password(password).build());
-        Optional<User> optUser = userRepository.findByEmail(email);
+        userRepository.save(Member.builder().email(email).name(name).password(password).build());
+        Optional<Member> optUser = userRepository.findByEmail(email);
         assertThat(optUser.isPresent()).isEqualTo(true);
     }
 }

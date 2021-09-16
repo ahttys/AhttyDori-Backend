@@ -27,3 +27,8 @@ services:
       - ahttyduri-server
     ports:
       - '80:80'
+
+  tmp_contatiner:
+    image: 'ubuntu'
+    container_name: 'test-container'
+    network_mode: 'host'

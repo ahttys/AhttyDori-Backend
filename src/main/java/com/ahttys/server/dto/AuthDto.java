@@ -1,11 +1,10 @@
 package com.ahttys.server.dto;
 
-import com.ahttys.server.domain.user.User;
+import com.ahttys.server.domain.user.Member;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 public class AuthDto {
     @Getter
@@ -18,15 +17,29 @@ public class AuthDto {
         private String email;
         @NotNull
         private String name;
-        @NotNull
         private String password;
 
-        public User toEntity(PasswordEncoder passwordEncoder) {
-            return User.builder().email(this.email)
+        public Member toEntity(PasswordEncoder passwordEncoder) {
+            return Member.builder()
+                    .email(this.email)
                     .name(this.name)
                     .password(passwordEncoder.encode(this.password))
                     .build();
         }
+
+//        private String randomPasswordGenerator() {
+//            String alphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+//                    + "0123456789"
+//                    + "abcdefghijklmnopqrstuvxyz"
+//                    + "!@#$%^&*-?";
+//
+//            StringBuilder sb = new StringBuilder();
+//            for (int i = 0; i < 12; i++) {
+//                int idx = (int) (alphaNumericString.length() * Math.random());
+//                sb.append(alphaNumericString.charAt(idx));
+//            }
+//            return sb.toString();
+//        }
     }
 
     @Getter

@@ -12,12 +12,12 @@ import javax.persistence.Id;
 public class Spot {
     @Id
     private String id;
-    private String Area1;
-    private String Area2;
-    private String Business_Name;
-    private String Brand_Name;
-    private String Business_Content;
-    private String Keywords;
-    private Boolean Business_Location_YN;
-    private String Adress;
+    private String area1;
+    private String area2;
+    private String business_name;
+    private String brand_name;
+    private String business_content;
+    private String keywords;
+    private Boolean business_Location_YN;
+    private String address;
 }
