@@ -1,7 +1,7 @@
 package com.ahttys.server.util.mappers;
 
 import com.ahttys.server.domain.Member.Member;
-import com.ahttys.server.dto.MemberDto;
+import com.ahttys.server.dto.member.MemberDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

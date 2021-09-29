@@ -1,7 +1,7 @@
 package com.ahttys.server.service.member;
 
 import com.ahttys.server.domain.Member.Member;
-import com.ahttys.server.dto.MemberDto;
+import com.ahttys.server.dto.member.MemberDto;
 import com.ahttys.server.util.mappers.MemberMapper;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,8 @@ class MemberServiceTest {
         Member member = Member.builder()
                 .email("test@test.com")
                 .name("test")
-                .password("1234").build();
+                .password("1234")
+                .build();
 
         MemberDto memberDto = MemberMapper.INSTANCE.toDto(member);
         assertEquals(member.getEmail(), memberDto.getEmail());

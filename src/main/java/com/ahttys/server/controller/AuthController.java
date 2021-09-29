@@ -1,7 +1,7 @@
 package com.ahttys.server.controller;
 
-import com.ahttys.server.dto.AuthDto;
-import com.ahttys.server.dto.MessageDto;
+import com.ahttys.server.dto.auth.AuthDto;
+import com.ahttys.server.dto.common.MessageDto;
 import com.ahttys.server.service.auth.AuthService;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 
 @RestController
@@ -62,11 +61,20 @@ public class AuthController {
             @ApiResponse(responseCode = "200", description = "카카오 로그인 성공", content = @Content(schema = @Schema(implementation = AuthDto.UserResponse.class))),
             @ApiResponse(responseCode = "400", description = "실패", content = @Content(schema = @Schema(implementation = MessageDto.class)))
     })
-    @GetMapping("/kakao")
+    @GetMapping("/login/kakao")
     public ResponseEntity<?> loginWithKakaoOauth(@RequestParam(value = "code") String code) {
         if (code.isEmpty()) {
-            return new ResponseEntity<>(new MessageDto("Code가 없습니다."), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new MessageDto("입력 값이 없습니다."), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(authService.oauth2KakaoWithCode(code), HttpStatus.OK);
+    }
+
+    @GetMapping("/login/kakao/mobile")
+    public ResponseEntity<?> loginWithKakaoOauthToken(@RequestParam(value = "token") String token){
+        if (token.isEmpty()) {
+            return new ResponseEntity<>(new MessageDto("입력 값이 없습니다."), HttpStatus.BAD_REQUEST);
+        }
+        System.out.println(token);
+        return new ResponseEntity<>(authService.oauth2KakaoWithToken(token), HttpStatus.OK);
     }
 }

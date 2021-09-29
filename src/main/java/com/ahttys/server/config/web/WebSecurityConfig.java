@@ -1,4 +1,4 @@
-package com.ahttys.server.config;
+package com.ahttys.server.config.web;
 
 import com.ahttys.server.config.jwt.JwtAccessDeniedHandler;
 import com.ahttys.server.config.jwt.JwtAuthenticationEntryPoint;

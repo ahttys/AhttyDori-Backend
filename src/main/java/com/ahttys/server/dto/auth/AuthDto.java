@@ -1,4 +1,4 @@
-package com.ahttys.server.dto;
+package com.ahttys.server.dto.auth;
 
 import com.ahttys.server.domain.Member.Member;
 import lombok.*;
@@ -26,20 +26,6 @@ public class AuthDto {
                     .password(passwordEncoder.encode(this.password))
                     .build();
         }
-
-//        private String randomPasswordGenerator() {
-//            String alphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-//                    + "0123456789"
-//                    + "abcdefghijklmnopqrstuvxyz"
-//                    + "!@#$%^&*-?";
-//
-//            StringBuilder sb = new StringBuilder();
-//            for (int i = 0; i < 12; i++) {
-//                int idx = (int) (alphaNumericString.length() * Math.random());
-//                sb.append(alphaNumericString.charAt(idx));
-//            }
-//            return sb.toString();
-//        }
     }
 
     @Getter

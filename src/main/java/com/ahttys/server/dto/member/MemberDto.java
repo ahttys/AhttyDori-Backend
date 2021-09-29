@@ -1,16 +1,16 @@
-package com.ahttys.server.dto;
+package com.ahttys.server.dto.member;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDto {
     private Long id;
     private String email;
     private String name;
+    private String image;
     private boolean kakaoOAuth;
     private boolean appleOAuth;
 }

@@ -1,6 +1,6 @@
 package com.ahttys.server.controller;
 
-import com.ahttys.server.dto.MessageDto;
+import com.ahttys.server.dto.common.MessageDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

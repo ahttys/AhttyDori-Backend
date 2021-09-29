@@ -1,7 +1,8 @@
 package com.ahttys.server.service.member;
 
+import com.ahttys.server.config.jwt.TokenProvider;
 import com.ahttys.server.domain.Member.Member;
-import com.ahttys.server.dto.MemberDto;
+import com.ahttys.server.dto.member.MemberDto;
 import com.ahttys.server.repository.MemberRepository;
 import com.ahttys.server.util.error.exceptions.CustomException;
 import com.ahttys.server.util.mappers.MemberMapper;
@@ -14,8 +15,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
+    private final TokenProvider tokenProvider;
+
     @Override
-    public MemberDto findMemberById(Long id) {
+    public MemberDto findMemberById(String token) {
+        Long id = Long.parseLong(tokenProvider.parseClaims(token).getSubject());
         Optional<Member> member = memberRepository.findById(id);
         if (member.isPresent()) {
             return MemberMapper.INSTANCE.toDto(member.get());

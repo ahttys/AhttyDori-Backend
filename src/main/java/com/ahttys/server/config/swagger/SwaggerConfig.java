@@ -1,4 +1,4 @@
-package com.ahttys.server.config;
+package com.ahttys.server.config.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

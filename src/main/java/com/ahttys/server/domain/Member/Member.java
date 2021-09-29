@@ -1,6 +1,6 @@
 package com.ahttys.server.domain.Member;
 
-import com.ahttys.server.domain.BaseTimeEntity;
+import com.ahttys.server.domain.common.BaseTimeEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -34,6 +34,9 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     private boolean appleOAuth = false;
+
+    @Column
+    private String image;
 
     @Builder
     public Member(String email, String password, String name) {

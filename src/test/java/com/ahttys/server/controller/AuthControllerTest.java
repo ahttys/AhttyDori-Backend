@@ -1,7 +1,7 @@
 package com.ahttys.server.controller;
 
 import com.ahttys.server.repository.MemberRepository;
-import com.ahttys.server.dto.AuthDto;
+import com.ahttys.server.dto.auth.AuthDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

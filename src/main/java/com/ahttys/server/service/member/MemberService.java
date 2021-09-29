@@ -1,7 +1,9 @@
 package com.ahttys.server.service.member;
 
-import com.ahttys.server.dto.MemberDto;
+
+import com.ahttys.server.dto.member.MemberDto;
+
 
 public interface MemberService {
-    MemberDto findMemberById(Long id);
+    MemberDto findMemberById(String token);
 }

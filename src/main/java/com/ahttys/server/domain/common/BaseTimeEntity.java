@@ -1,4 +1,4 @@
-package com.ahttys.server.domain;
+package com.ahttys.server.domain.common;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

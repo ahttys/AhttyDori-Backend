@@ -1,4 +1,4 @@
-package com.ahttys.server.dto;
+package com.ahttys.server.dto.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
