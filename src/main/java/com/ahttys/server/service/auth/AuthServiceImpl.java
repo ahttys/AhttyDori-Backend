@@ -28,8 +28,6 @@ public class AuthServiceImpl implements AuthService {
     private final TokenProvider tokenProvider;
     private final PasswordEncoder passwordEncoder;
     private final OAuth2Kakao oAuth2Kakao;
-    private static final Logger logger = LoggerFactory.getLogger(AuthServiceImpl.class);
-
 
     @Override
     @Transactional

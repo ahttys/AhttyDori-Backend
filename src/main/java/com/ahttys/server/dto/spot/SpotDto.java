@@ -1,6 +1,9 @@
 package com.ahttys.server.dto.spot;
 
+import com.ahttys.server.domain.spot.Spot;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,10 +14,10 @@ public class SpotDto {
     private String id;
     private String area1;
     private String area2;
-    private String business_name;
-    private String brand_name;
-    private String business_content;
-    private String keywords;
-    private Boolean business_location_yn;
+    private String businessName;
+    private String brandName;
+    private String content;
+    private List<String> tags;
+    private Boolean businessLocationYN;
     private String address;
 }

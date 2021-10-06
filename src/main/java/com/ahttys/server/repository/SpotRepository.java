@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface SpotRepository extends MongoRepository<Spot, String> {
-//    List<Spot> findByArea1(String name);
-//    List<Spot> findByArea2(String name);
-//    List<Spot> findByBrand_name(String name);
+    List<Spot> findByArea1(String name);
+    List<Spot> findByArea2(String name);
+    Spot findByBrandName(String name);
 }

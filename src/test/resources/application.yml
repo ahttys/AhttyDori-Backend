@@ -13,6 +13,13 @@ spring:
         format-sql: true
         show-sql: true
   data:
+    mongodb:
+      host: ${MONGO_HOST}
+      port: ${MONGO_PORT}
+      database: ${MONGO_DB}
+      username: ${MONGO_USER}
+      password: ${MONGO_PASSWORD}
+      authentication-database: ${MONGO_DB}
   h2:
     console:
       enabled: true
