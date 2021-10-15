@@ -5,7 +5,8 @@ services:
   ahttyduri-server:
     image: 'jrhong95/ahttyduri'
     container_name: 'ahttyduri-server'
-    network_mode: 'host'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       SPRING_PROFILES_ACTIVE: '${SPRING_PROFILES_ACTIVE}'
       DB_PATH: '${DB_PATH}'
