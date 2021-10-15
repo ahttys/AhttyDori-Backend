@@ -5,6 +5,7 @@ services:
   ahttyduri-server:
     image: 'jrhong95/ahttyduri'
     container_name: 'ahttyduri-server'
+    network_mode: 'host'
     environment:
       SPRING_PROFILES_ACTIVE: '${SPRING_PROFILES_ACTIVE}'
       DB_PATH: '${DB_PATH}'
@@ -29,8 +30,3 @@ services:
       - ahttyduri-server
     ports:
       - '80:80'
-
-  tmp_contatiner:
-    image: 'ubuntu'
-    container_name: 'test-container'
-    network_mode: 'host'
