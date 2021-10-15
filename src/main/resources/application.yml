@@ -46,7 +46,7 @@ spring:
       ddl-auto: none
   data:
     mongodb:
-      host: ${MONGO_HOST}
+      host: host.docker.internal
       port: ${MONGO_PORT}
       database: ${MONGO_DB}
       username: ${MONGO_USER}
